@@ -78,3 +78,7 @@ div.layer div{
     width: calc(100% - 8px);
 }
 
+body.success #success-msg{
+    opacity: 1;
+    transition: opacity 0.2 ease;
+}
