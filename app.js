@@ -1,2 +1,75 @@
 //adsf
-console.log("hello")
+console.log("hello, testing one-two-three is this thing on lol? \n\t-IF YOU KNOW WHERE THIS IS FROM: MAH MAN (you based af).\n")
+
+//Wall class
+class Floor{
+    isWall = false;
+}
+class Wall{
+    isWall = true;
+}
+
+let levels = [];
+levels[0] = {
+    map:[
+        [1,1,0,0,1],
+        [1,0,0,0,0],
+        [0,0,1,1,0],
+        [0,0,0,1,0],
+        [0,1,0,1,0]
+    ],
+    player: {
+        x:0,
+        y:4
+    },
+    goal: {
+        x:4,
+        y:1
+    },
+    theme:'default'
+};
+
+function Game(id, level){
+    this.el = document.getElementById(id);
+    this.tileTypes = [Floor, Wall]
+    this.tileDim = 32;
+    this.map = level.map;
+    this.theme = level.theme;
+    this.player = {...level.player};
+    this.goal = {...level.goal};
+    this,player.el = null;
+}
+
+Game.prototype.populateMap = function() {
+    this.el.className = 'game-container ' + this.theme;
+    let tiles = document.getElementById('tiles');
+    for (var y = 0; y < this.map.length; ++y) {
+    
+        for (var x = 0; x < this.map[y].length; ++x) {
+                 
+            let tileCode = this.map[y][x];
+            let tileType = this.tileTypes[tileCode];
+            let tile = this.createEl(x, y, tileType);
+            tiles.appendChild(tile);
+        }
+    }
+}
+
+Game.prototype.createEl = function(x,y,type) {                          
+                       
+    let el = document.createElement('div');         
+                                                                   
+    el.className = type;
+    el.style.width = el.style.height = myGame.tileDim + 'px';
+    el.style.left = x * myGame.tileDim + 'px';   
+                                               
+    el.style.top = y * myGame.tileDim + 'px';
+    return el;
+}
+
+function init() {
+    let myGame = new Game('game-container-1',levels[0]);
+    
+    myGame.populateMap();
+}
+init();
