@@ -1,13 +1,13 @@
 //adsf
 console.log("hello, testing one-two-three is this thing on lol? \n\t-IF YOU KNOW WHERE THIS IS FROM: MAH MAN (you based af).\n")
 
-//Wall class
-class Floor{
-    isWall = false;
-}
-class Wall{
-    isWall = true;
-}
+// //Wall class
+// class Floor{
+//     isWall = false;
+// };
+// class Wall{
+//     isWall = true;
+// };
 
 let levels = [];
 levels[0] = {
@@ -31,13 +31,12 @@ levels[0] = {
 
 function Game(id, level){
     this.el = document.getElementById(id);
-    this.tileTypes = [Floor, Wall]
+    this.tileTypes = ['floor', 'wall'];
     this.tileDim = 32;
     this.map = level.map;
-    this.theme = level.theme;
     this.player = {...level.player};
     this.goal = {...level.goal};
-    this,player.el = null;
+    this.player.el = null;
 }
 
 Game.prototype.populateMap = function() {
@@ -60,10 +59,10 @@ Game.prototype.createEl = function(x,y,type) {
     let el = document.createElement('div');         
                                                                    
     el.className = type;
-    el.style.width = el.style.height = myGame.tileDim + 'px';
-    el.style.left = x * myGame.tileDim + 'px';   
+    el.style.width = el.style.height = this.tileDim + 'px';
+    el.style.left = x * this.tileDim + 'px';   
                                                
-    el.style.top = y * myGame.tileDim + 'px';
+    el.style.top = y * this.tileDim + 'px';
     return el;
 }
 
