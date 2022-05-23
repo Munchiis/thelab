@@ -6,8 +6,12 @@ const player = new Player
 const goal = new Character
 //Node for linked list for guaranteed path 
 class GuaranteedPathNode {
-    GuaranteedPathNode(typeOfTile, next, prev, x, y){
-        next = null;
+    GuaranteedPathNode(typeOfTile, x, y, next = null, prev = null){
+        this.typeOfTile = typeOfTile;
+        this.next = next;
+        this.prev = prev;
+        this.x = x;
+        this.y = y;
     }
     //tyle type is 0 for floor and 1 for wall
     typeOfTile;
@@ -18,6 +22,11 @@ class GuaranteedPathNode {
 }
 //Actual guaranteed path linked list as a class
 class GuaranteedPath{
+    GuaranteedPath(head = null, tail = null, size = 0){
+        this.head = head;
+        this.tail = tail;
+        this.size = size;
+    }
     head;
     tail;
     size;
@@ -41,8 +50,10 @@ function generateMap(arr){
     arr[startY][startX] = 0;
     arr[goalY][goalX] = 0;
 
-    let current = new GuaranteedPathNode();
-    while(GuaranteedPathNode.)
+    let current = new GuaranteedPathNode(0, startX, startY);
+    while(current.y != goalY && current.x != goalX){
+        
+    }
 
 
 }
