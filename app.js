@@ -1,74 +1,28 @@
-//adsf
-console.log("hello, testing one-two-three is this thing on lol? \n\t-IF YOU KNOW WHERE THIS IS FROM: MAH MAN (you based af).\n")
+import Character from "./character.js";
+import Game from "./game.js";
+import Player from "./player.js";
 
-// //Wall class
-// class Floor{
-//     isWall = false;
-// };
-// class Wall{
-//     isWall = true;
-// };
+const player = new Player
+const goal = new Character
 
-let levels = [];
+player.setCoor(1,4)
+goal.setCoor(2,2)
+
+let levels = []
+
 levels[0] = {
-    map:[
-        [1,1,0,0,1],
-        [1,0,0,0,0],
-        [0,0,1,1,0],
-        [0,0,0,1,0],
-        [0,1,0,1,0]
-    ],
-    player: {
-        x:0,
-        y:4
-    },
-    goal: {
-        x:4,
-        y:1
-    },
-    theme:'default'
-};
-
-function Game(id, level){
-    this.el = document.getElementById(id);
-    this.tileTypes = ['floor', 'wall'];
-    this.tileDim = 32;
-    this.map = level.map;
-    this.player = {...level.player};
-    this.goal = {...level.goal};
-    this.player.el = null;
+  map:[
+     [1,1,0,0,1],
+     [1,0,0,0,0],
+     [0,0,1,1,0],
+     [0,0,0,1,0],
+     [0,1,0,1,0]
+  ],
+  player: player,
+  goal : goal,
+  theme:'default'
 }
 
-Game.prototype.populateMap = function() {
-    this.el.className = 'game-container ' + this.theme;
-    let tiles = document.getElementById('tiles');
-    for (var y = 0; y < this.map.length; ++y) {
-    
-        for (var x = 0; x < this.map[y].length; ++x) {
-                 
-            let tileCode = this.map[y][x];
-            let tileType = this.tileTypes[tileCode];
-            let tile = this.createEl(x, y, tileType);
-            tiles.appendChild(tile);
-        }
-    }
-}
+let myGame = new Game('game-container-1',levels[0])
 
-Game.prototype.createEl = function(x,y,type) {                          
-                       
-    let el = document.createElement('div');         
-                                                                   
-    el.className = type;
-    el.style.width = el.style.height = this.tileDim + 'px';
-    el.style.left = x * this.tileDim + 'px';   
-                                               
-    el.style.top = y * this.tileDim + 'px';
-    return el;
-}
-
-function init() {
-    let myGame = new Game('game-container-1',levels[0]);
-    
-    myGame.populateMap();
-}
-init();
+myGame.populateMap()
